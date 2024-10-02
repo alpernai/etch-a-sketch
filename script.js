@@ -1,6 +1,5 @@
 let reset = document.querySelector(".reset");
 let board = document.querySelector(".board");
-let gridSize;
 
 function getSize(){
     let size;
@@ -8,7 +7,7 @@ function getSize(){
     do {
         size = prompt("Please select an integer from 1 - 100");
 
-        if (size === null){
+        if (size === null){ 
             return null;
         }
 
@@ -20,10 +19,11 @@ function getSize(){
 
     } while (isNaN(size) || size < 1 || size > 100 || !Number.isInteger(size));
 
-    gridSize = size;
+    createGrid(size);
 }
 
 function createGrid(size) {
+    board.innerHTML = '';
     for (let i = 0; i < size; i++) {
         let row = document.createElement("div");
         row.classList.add("row");
@@ -31,6 +31,9 @@ function createGrid(size) {
         for (let j = 0; j < size; j++) {
             let cell = document.createElement("div");
             cell.classList.add("cell");
+            let cellSize = 600 / size; 
+            cell.style.height = `${cellSize}px`
+            cell.style.width = `${cellSize}px`      
             row.appendChild(cell); 
         }
 
@@ -38,14 +41,12 @@ function createGrid(size) {
     }
 }
 
+reset.addEventListener("click", getSize)
+
 // 'reset' stores the HTML reset button.
 // 'board' stores the HTML div that will contain the grid.
-// 'row' creates and stores a new div element. 
-// 'cell' creates and stores a new div element. 
-// 'gridSize' will store the input of getSize. 
 // 'getSize' prompts user for input and returns 'size'.
 // 'createGrid' deletes previous grid and appends 'size' ammount of 'row' elements into 'board' and 'size' ammount of 'cell' elements into every 'row'. 
-// 'styleGrid' function styles every 'cell' element. 
 // 'colorGrid' changes the color of every grid element.
-// Click event listener for 'reset'. On click, execute functions 'getSize', 'createGrid' and 'styleGrid'. 
+// Click event listener for 'reset'. On click, execute function 'getSize'
 // Hover event listener for grid elements that executes 'colorGrid'.
