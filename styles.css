@@ -1,7 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
 .flex-me{
     display: flex;
     justify-content: center;
-    margin: 5px;
+    margin: 10px;
 }
 
 .board {
@@ -12,6 +18,5 @@
 }
 
 .cell {
-    border: solid 1px blue;
-    box-sizing: border-box;
+    border: solid 1px black;
 }

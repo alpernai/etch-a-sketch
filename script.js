@@ -22,8 +22,16 @@ function getSize(){
     createGrid(size);
 }
 
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256); 
+    const g = Math.floor(Math.random() * 256); 
+    const b = Math.floor(Math.random() * 256); 
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
 function createGrid(size) {
-    board.innerHTML = '';
+    board.innerHTML = ''; 
+    
     for (let i = 0; i < size; i++) {
         let row = document.createElement("div");
         row.classList.add("row");
@@ -33,7 +41,10 @@ function createGrid(size) {
             cell.classList.add("cell");
             let cellSize = 600 / size; 
             cell.style.height = `${cellSize}px`
-            cell.style.width = `${cellSize}px`      
+            cell.style.width = `${cellSize}px`
+            cell.addEventListener("mouseover", () => {
+                cell.style.backgroundColor = getRandomColor();
+            });
             row.appendChild(cell); 
         }
 
@@ -41,12 +52,6 @@ function createGrid(size) {
     }
 }
 
-reset.addEventListener("click", getSize)
+createGrid(16);
+reset.addEventListener("click", getSize);
 
-// 'reset' stores the HTML reset button.
-// 'board' stores the HTML div that will contain the grid.
-// 'getSize' prompts user for input and returns 'size'.
-// 'createGrid' deletes previous grid and appends 'size' ammount of 'row' elements into 'board' and 'size' ammount of 'cell' elements into every 'row'. 
-// 'colorGrid' changes the color of every grid element.
-// Click event listener for 'reset'. On click, execute function 'getSize'
-// Hover event listener for grid elements that executes 'colorGrid'.
